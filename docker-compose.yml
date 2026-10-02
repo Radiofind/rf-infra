@@ -55,6 +55,7 @@ services:
 
     environment:
       NG_ALLOWED_HOSTS: localhost
+      NG_TRUST_PROXY_HEADERS: "x-forwarded-host,x-forwarded-proto,x-forwarded-for,x-forwarded-port"
 
     expose:
       - "4000"
