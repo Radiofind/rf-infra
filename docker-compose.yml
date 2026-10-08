@@ -39,7 +39,7 @@ services:
       AVATARS_PATH: /app/storage/avatars
 
     volumes:
-      - avatar-data: /app/storage/avatars
+      - avatar-data:/app/storage/avatars
 
     expose:
       - "8080"
