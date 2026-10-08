@@ -36,6 +36,10 @@ services:
       DB_URL: jdbc:postgresql://db:5432/radiofind
       DB_USERNAME: postgres
       DB_PASSWORD: postgres
+      AVATARS_PATH: /app/storage/avatars
+
+    volumes:
+      - avatar-data: /app/storage/avatars
 
     expose:
       - "8080"
@@ -82,3 +86,4 @@ services:
 
 volumes:
   db-data:
+  avatar-data:
