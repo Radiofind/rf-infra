@@ -10,6 +10,7 @@ Docker Compose setup that runs the whole **RadioFind** stack locally: PostgreSQL
 | `backend`  | built from `../rf-back`          | 8080             | —               | REST API (Spring Boot)           |
 | `frontend` | built from `../rf-front`         | 4000             | —               | Angular SSR server               |
 | `nginx`    | `nginx:alpine`                   | 80               | `80`            | Reverse proxy, single entrypoint |
+| `mailpit`  | `axllent/mailpit`                | 1025 / 8025      | `8025`          | Local SMTP server and mail inbox |
 
 Routing in [nginx/nginx.conf](nginx/nginx.conf):
 
@@ -42,12 +43,14 @@ cp .env.example .env
 
 | Variable        | Description                                                                 |
 | --------------- | --------------------------------------------------------------------------- |
-| `MAIL_USERNAME` | SMTP login (Gmail account) used by the backend to send emails              |
-| `MAIL_PASSWORD` | SMTP password — for Gmail use an [app password](https://myaccount.google.com/apppasswords) |
 | `JWT_SECRET`    | Secret used to sign JWT tokens, e.g. `openssl rand -base64 64`             |
 | `FRONTEND_URL`  | Public URL of the frontend, used in links sent by the backend (`http://localhost`) |
 
-`MAIL_HOST` and `MAIL_PORT` are listed in `.env.example`, but the backend currently uses `smtp.gmail.com:587` from its own `application.yml`.
+## 📬 Email
+
+The backend sends every email (two-factor codes, password reset links) to Mailpit, never to a real mailbox. Read them at <http://localhost:8025>.
+
+The SMTP settings are set in [docker-compose.yml](docker-compose.yml) and override any `MAIL_*` value in `.env`. To send through a real SMTP server instead, change `MAIL_HOST`, `MAIL_PORT`, `MAIL_USERNAME`, `MAIL_PASSWORD`, `MAIL_SMTP_AUTH` and `MAIL_SMTP_STARTTLS` there.
 
 Database credentials (`postgres` / `postgres`, database `radiofind`) are set directly in [docker-compose.yml](docker-compose.yml) and are intended for local development only.
 

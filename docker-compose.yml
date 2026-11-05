@@ -37,6 +37,12 @@ services:
       DB_USERNAME: postgres
       DB_PASSWORD: postgres
       AVATARS_PATH: /app/storage/avatars
+      MAIL_HOST: mailpit
+      MAIL_PORT: "1025"
+      MAIL_USERNAME: ""
+      MAIL_PASSWORD: ""
+      MAIL_SMTP_AUTH: "false"
+      MAIL_SMTP_STARTTLS: "false"
 
     volumes:
       - avatar-data:/app/storage/avatars
@@ -47,6 +53,19 @@ services:
     depends_on:
       db:
         condition: service_healthy
+      mailpit:
+        condition: service_started
+
+    restart: unless-stopped
+
+  mailpit:
+    image: axllent/mailpit:v1.32.0
+
+    ports:
+      - "8025:8025"
+
+    expose:
+      - "1025"
 
     restart: unless-stopped
 
