@@ -37,6 +37,8 @@ services:
       DB_USERNAME: postgres
       DB_PASSWORD: postgres
       AVATARS_PATH: /app/storage/avatars
+      TRACK_AUDIO_PATH: /app/storage/tracks/audio
+      TRACK_COVERS_PATH: /app/storage/tracks/covers
       MAIL_HOST: mailpit
       MAIL_PORT: "1025"
       MAIL_USERNAME: ""
@@ -46,6 +48,7 @@ services:
 
     volumes:
       - avatar-data:/app/storage/avatars
+      - track-data:/app/storage/tracks
 
     expose:
       - "8080"
@@ -106,3 +109,4 @@ services:
 volumes:
   db-data:
   avatar-data:
+  track-data:
