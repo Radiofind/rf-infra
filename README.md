@@ -46,6 +46,8 @@ cp .env.example .env
 | `JWT_SECRET`    | Secret used to sign JWT tokens, e.g. `openssl rand -base64 64`             |
 | `TOTP_ENCRYPTION_KEY` | Base64 AES-256 key that encrypts authenticator secrets, `openssl rand -base64 32`. Never change it once users have set up an authenticator, or their codes stop working |
 | `FRONTEND_URL`  | Public URL of the frontend, used in links sent by the backend (`http://localhost`) |
+| `TELEGRAM_BOT_TOKEN` | Token of the Telegram bot that receives messages from the Support page. Leave empty locally to keep messages out of the real chat; sending then answers 503 |
+| `TELEGRAM_CHAT_ID` | Id of the Telegram chat the bot posts support messages to |
 
 ## 📬 Email
 
