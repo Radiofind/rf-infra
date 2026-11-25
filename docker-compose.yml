@@ -92,7 +92,7 @@ services:
     restart: unless-stopped
 
   nginx:
-    image: nginx:alpine
+    image: nginx:1.31.10-alpine
 
     ports:
       - "80:80"

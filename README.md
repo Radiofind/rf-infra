@@ -9,7 +9,7 @@ Docker Compose setup that runs the whole **RadioFind** stack locally: PostgreSQL
 | `db`       | `postgres:17`                    | 5432             | `5433`          | Main database (`radiofind`)      |
 | `backend`  | built from `../rf-back`          | 8080             | —               | REST API (Spring Boot)           |
 | `frontend` | built from `../rf-front`         | 4000             | —               | Angular SSR server               |
-| `nginx`    | `nginx:alpine`                   | 80               | `80`            | Reverse proxy, single entrypoint |
+| `nginx`    | `nginx:1.31.10-alpine`           | 80               | `80`            | Reverse proxy, single entrypoint |
 | `mailpit`  | `axllent/mailpit`                | 1025 / 8025      | `8025`          | Local SMTP server and mail inbox |
 
 Routing in [nginx/nginx.conf](nginx/nginx.conf):
